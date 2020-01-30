@@ -35,7 +35,6 @@ extension AVMediaSelectionOption: TextTrackMetadata {
     private var seekTolerance: CMTime?
 
     private var seekTarget: CMTime = CMTime.invalid
-    private var isSeekInProgress: Bool = false
     
     // MARK: - Public API
     
@@ -133,7 +132,13 @@ extension AVMediaSelectionOption: TextTrackMetadata {
     
     open func seek(to time: TimeInterval) {
         let cmTime = CMTimeMakeWithSeconds(time, preferredTimescale: Int32(NSEC_PER_SEC))
-        self.smoothSeek(to: cmTime)
+        if let tolerance = self.seekTolerance {
+            self.player.seek(to: cmTime, toleranceBefore: tolerance, toleranceAfter: tolerance)
+        } else {
+            self.player.seek(to: cmTime)
+        }
+
+        self.time = time
     }
 
     open func play() {
@@ -188,50 +193,6 @@ extension AVMediaSelectionOption: TextTrackMetadata {
             self.player.usesExternalPlaybackWhileExternalScreenIsActive = true
         #endif
     }
-
-    // MARK: - Smooth Seeking
-
-    // Note: Smooth seeking follows the guide from Apple Technical Q&A: https://developer.apple.com/library/archive/qa/qa1820/_index.html
-    // Update the seek target and begin seeking if there is no seek currently in progress.
-    private func smoothSeek(to cmTime: CMTime) {
-        self.seekTarget = cmTime
-
-        guard self.isSeekInProgress == false else { return }
-        self.seekToTarget()
-    }
-
-    // Unconditionally seek to the current seek target.
-    private func seekToTarget() {
-        self.isSeekInProgress = true
-
-        guard self.player.status != .unknown else { return }
-
-        assert(CMTIME_IS_VALID(self.seekTarget))
-        let inProgressSeekTarget = self.seekTarget
-
-        let completion: (Bool) -> Void = { [weak self] _ in
-            guard let self = self else { return }
-
-            self.time = CMTimeGetSeconds(inProgressSeekTarget)
-            if CMTimeCompare(inProgressSeekTarget, self.seekTarget) == 0 {
-                self.isSeekInProgress = false
-            } else {
-                self.seekToTarget()
-            }
-        }
-
-        if let tolerance = self.seekTolerance {
-            self.player.seek(
-                to: inProgressSeekTarget,
-                toleranceBefore: tolerance,
-                toleranceAfter: tolerance,
-                completionHandler: completion
-            )
-        } else {
-            self.player.seek(to: inProgressSeekTarget, completionHandler: completion)
-        }
-    }
-
     
     // MARK: - Observers
     
@@ -333,8 +294,8 @@ extension AVMediaSelectionOption: TextTrackMetadata {
             self.state = .ready
 
             // If we tried to seek before the video was ready to play, resume seeking now.
-            if self.isSeekInProgress {
-                self.seekToTarget()
+            if let time = self.seekTolerance?.timeInterval {
+                self.seek(to: time)
             }
             
         case .failed:

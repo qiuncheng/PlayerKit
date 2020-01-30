@@ -22,7 +22,7 @@ class PlayerViewController: UIViewController, PlayerDelegate {
     
     private let player = RegularPlayer()
     
-    let rate = Float(1)
+    let rate = Float(1.5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
