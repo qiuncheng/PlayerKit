@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author           = { 'code' => 'gavin@vimeo.com' }
   s.source           = { :git => 'https://github.com/vimeo/PlayerKit.git', :tag => s.version.to_s }
 
-  s.ios.deployment_target = '10.3'
+  s.ios.deployment_target = '10.0'
   s.tvos.deployment_target = '10.0'
   s.osx.deployment_target = '10.11'
 

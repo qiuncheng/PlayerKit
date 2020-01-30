@@ -46,6 +46,10 @@ extension AVMediaSelectionOption: TextTrackMetadata {
         let playerItem = AVPlayerItem(asset: asset)
         self.set(playerItem: playerItem)
     }
+    
+    @objc open func setRate(_ rate: Float) {
+        self.player.rate = rate
+    }
 
     @objc open func set(playerItem: AVPlayerItem) {
         // Prepare the old item for removal

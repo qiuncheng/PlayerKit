@@ -12,7 +12,7 @@ import AVFoundation
 
 class PlayerViewController: UIViewController, PlayerDelegate {
     private struct Constants {
-        static let VideoURL = URL(string: "https://github.com/vimeo/PlayerKit/blob/master/Example/PlayerKit/video.mp4?raw=true")!
+        static let VideoURL = URL(string: "https://mudan.iii-kuyunzy.com/20191220/6525_d768f4a8/index.m3u8")!
     }
     
     @IBOutlet weak var playButton: UIButton!
@@ -22,6 +22,8 @@ class PlayerViewController: UIViewController, PlayerDelegate {
     
     private let player = RegularPlayer()
     
+    let rate = Float(1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,8 @@ class PlayerViewController: UIViewController, PlayerDelegate {
         self.addPlayerToView()
         
         self.player.set(AVURLAsset(url: Constants.VideoURL))
+        
+        self.player.setRate(rate)
     }
     
     // MARK: Setup
@@ -85,9 +89,9 @@ class PlayerViewController: UIViewController, PlayerDelegate {
         
         let ratio = player.time / player.duration
         
-        if self.slider.isHighlighted == false {
-            self.slider.value = Float(ratio)
-        }
+//        if self.slider.isHighlighted == false {
+        self.slider.value = Float(ratio)
+//        }
     }
     
     func playerDidUpdateBufferedTime(player: Player) {

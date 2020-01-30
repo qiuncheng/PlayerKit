@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		247AA5DF3742EDF63FBB81C1 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D882864B2E994D13F783B02 /* Pods_Example.framework */; };
+		86AEBA7023E292E7007FBCC1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8751E66D22F49B47000610A0 /* LaunchScreen.xib */; };
 		87127EEC22F4CBD700ABDB39 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 87127EEB22F4CBD700ABDB39 /* Default-568h@2x.png */; };
 		8751E67222F49B48000610A0 /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751E66A22F49B47000610A0 /* PlayerViewController.swift */; };
-		8751E67322F49B48000610A0 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8751E66C22F49B47000610A0 /* LaunchScreen.xib */; };
 		8751E67422F49B48000610A0 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8751E66E22F49B47000610A0 /* video.mp4 */; };
 		8751E67522F49B48000610A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8751E66F22F49B48000610A0 /* AppDelegate.swift */; };
 		8751E67622F49B48000610A0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8751E67022F49B48000610A0 /* Images.xcassets */; };
@@ -78,7 +78,7 @@
 		680FAFB882E155317DBF1794 /* Pods-PlayerKit-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlayerKit-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlayerKit-iOS/Pods-PlayerKit-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		87127EEB22F4CBD700ABDB39 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8751E66A22F49B47000610A0 /* PlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
-		8751E66D22F49B47000610A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = LaunchScreen.xib; sourceTree = "<group>"; };
+		8751E66D22F49B47000610A0 /* LaunchScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		8751E66E22F49B47000610A0 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		8751E66F22F49B48000610A0 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8751E67022F49B48000610A0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 				87127EEB22F4CBD700ABDB39 /* Default-568h@2x.png */,
 				8751E66F22F49B48000610A0 /* AppDelegate.swift */,
 				8751E67022F49B48000610A0 /* Images.xcassets */,
-				8751E66C22F49B47000610A0 /* LaunchScreen.xib */,
+				8751E66D22F49B47000610A0 /* LaunchScreen.xib */,
 				8751E66A22F49B47000610A0 /* PlayerViewController.swift */,
 				8751E67122F49B48000610A0 /* PlayerViewController.xib */,
 				8751E66E22F49B47000610A0 /* video.mp4 */,
@@ -332,11 +332,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 1010;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Manual;
 					};
 					8751E68B22F4B7CE000610A0 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 					8751E69322F4B7CE000610A0 = {
@@ -348,13 +349,11 @@
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "PlayerKit" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
-				global,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
@@ -375,7 +374,7 @@
 			files = (
 				8751E67622F49B48000610A0 /* Images.xcassets in Resources */,
 				8751E67722F49B48000610A0 /* PlayerViewController.xib in Resources */,
-				8751E67322F49B48000610A0 /* LaunchScreen.xib in Resources */,
+				86AEBA7023E292E7007FBCC1 /* LaunchScreen.xib in Resources */,
 				8751E67422F49B48000610A0 /* video.mp4 in Resources */,
 				87127EEC22F4CBD700ABDB39 /* Default-568h@2x.png in Resources */,
 			);
@@ -530,17 +529,6 @@
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		8751E66C22F49B47000610A0 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8751E66D22F49B47000610A0 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
 		607FACED1AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -590,7 +578,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -640,7 +628,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -670,7 +658,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -694,7 +682,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -732,7 +720,7 @@
 				PRODUCT_NAME = PlayerKit;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -769,7 +757,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Vimeo.PlayerKit-iOS";
 				PRODUCT_NAME = PlayerKit;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
