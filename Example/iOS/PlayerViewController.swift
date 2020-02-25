@@ -12,7 +12,7 @@ import AVFoundation
 
 class PlayerViewController: UIViewController, PlayerDelegate {
     private struct Constants {
-        static let VideoURL = URL(string: "https://mudan.iii-kuyunzy.com/20191220/6525_d768f4a8/index.m3u8")!
+        static let VideoURL = URL(string: "https://om.tc.qq.com/b0033e3enxz.mp4?vkey=756D8DE58BD5ECA933FF0BE768EE9B59477CEAC84A302700FD7D1E85C527A18AF2CF11233AE5F57026006AAE31FFAB5262EC511CBBA835EB0B7E98651FB617C599717087F2DFCD7AAED1EF418AB0E51C7EE01B646F018ADCB2BB315C0925A08E994295C917A507F29E871348B6495936")!
     }
     
     @IBOutlet weak var playButton: UIButton!
@@ -22,18 +22,20 @@ class PlayerViewController: UIViewController, PlayerDelegate {
     
     private let player = RegularPlayer()
     
-    let rate = Float(1.5)
+    let rate = Float(2)
+    var isPaused = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         player.delegate = self
-
+        
         self.addPlayerToView()
         
         self.player.set(AVURLAsset(url: Constants.VideoURL))
+        player.automaticallyWaitsToMinimizeStalling = false
         
-        self.player.setRate(rate)
+        self.player.playImmediately(atRate: rate)
     }
     
     // MARK: Setup
@@ -47,7 +49,7 @@ class PlayerViewController: UIViewController, PlayerDelegate {
     // MARK: Actions
     
     @IBAction func didTapPlayButton() {
-        self.player.playing ? self.player.pause() : self.player.play()
+        self.player.playing ? pause() : play()
     }
     
     @IBAction func didChangeSliderValue() {
@@ -56,6 +58,16 @@ class PlayerViewController: UIViewController, PlayerDelegate {
         let time = value * self.player.duration
         
         self.player.seek(to: time)
+    }
+    
+    func pause() {
+        isPaused = true
+        player.pause()
+    }
+    
+    func play() {
+        isPaused = false
+        player.playImmediately(atRate: rate)
     }
     
     // MARK: VideoPlayerDelegate
@@ -69,8 +81,9 @@ class PlayerViewController: UIViewController, PlayerDelegate {
             self.activityIndicator.isHidden = false
             
         case .ready:
-            
-            break
+            if !isPaused {
+                self.player.playImmediately(atRate: rate)
+            }
             
         case .failed:
             
@@ -80,6 +93,7 @@ class PlayerViewController: UIViewController, PlayerDelegate {
     
     func playerDidUpdatePlaying(player: Player) {
         self.playButton.isSelected = player.playing
+        print(">>>>>>", player.playing)
     }
     
     func playerDidUpdateTime(player: Player) {
@@ -89,9 +103,9 @@ class PlayerViewController: UIViewController, PlayerDelegate {
         
         let ratio = player.time / player.duration
         
-//        if self.slider.isHighlighted == false {
-        self.slider.value = Float(ratio)
-//        }
+        if self.slider.isHighlighted == false {
+            self.slider.value = Float(ratio)
+        }
     }
     
     func playerDidUpdateBufferedTime(player: Player) {

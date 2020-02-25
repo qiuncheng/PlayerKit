@@ -45,10 +45,6 @@ extension AVMediaSelectionOption: TextTrackMetadata {
         let playerItem = AVPlayerItem(asset: asset)
         self.set(playerItem: playerItem)
     }
-    
-    @objc open func setRate(_ rate: Float) {
-        self.player.rate = rate
-    }
 
     @objc open func set(playerItem: AVPlayerItem) {
         // Prepare the old item for removal
@@ -143,6 +139,10 @@ extension AVMediaSelectionOption: TextTrackMetadata {
 
     open func play() {
         self.player.play()
+    }
+    
+    open func playImmediately(atRate rate: Float) {
+        self.player.playImmediately(atRate: rate)
     }
     
     open func pause() {
@@ -346,6 +346,15 @@ extension RegularPlayer: AirPlayCapable
         }
         set {
             return self.player.allowsExternalPlayback = newValue
+        }
+    }
+    
+    public var rate: Float {
+        get {
+            return self.player.rate
+        }
+        set {
+            self.player.playImmediately(atRate: newValue)
         }
     }
 }
